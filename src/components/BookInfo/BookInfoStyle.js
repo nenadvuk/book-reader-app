@@ -8,10 +8,11 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: row;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--medGrey);
   border-radius: 20px;
   @media screen and (max-width: 768px) {
     flex-direction: column;

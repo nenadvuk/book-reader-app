@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+// Mui
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -25,7 +25,7 @@ const Category = ({ category, setCategory }) => {
   return (
     <div>
       <Button sx={{ display: "block" }} onClick={handleOpen}></Button>
-      <FormControl sx={{ m: 0, minWidth: 50 }} focused label="Category">
+      <FormControl sx={{ m: 0, minWidth: 100 }} focused label="Category">
         <InputLabel style={{ color: "var(--brown)" }}>Categories</InputLabel>
         <Select
           style={{ color:"var(--brown)" }}

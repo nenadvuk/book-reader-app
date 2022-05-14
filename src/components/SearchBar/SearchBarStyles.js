@@ -3,18 +3,15 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  /* height: 100px; */
-  /* background: var(--violet); */
 `;
 
 export const Content = styled.div`
   position: relative;
   max-width: var(--maxWidth);
-  /* min-width: 100%; */
   height: 55px;
   background: var(--medGrey);
   margin: 11px auto 0 0;
-  border-radius: 40px;
+  border-radius: 2px;
   color: var(--white);
   img {
     position: absolute;

@@ -7,22 +7,23 @@ import { Spinner } from "./Spinner/Spinner.styles";
 import BooksGrid from "./BooksGrid/BooksGrid";
 import Book from "./Book/Book";
 import Category from "./Category/Category";
+import Video from "./Video/Video";
+// Styles
+import { Wrapper } from "./HomeStyle";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [category, setCategory] = useState("author");
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  // const [showVideo, setShowVideo] = useState(true);
 
-  // useEffect(() => {
-  //   setCategory("author")
-  // }, [category])
-
-
+  
   useEffect(() => {
     const fetchSearch = async () => {
       try {
         setLoading(true);
+        // Search titles or authors
         const searchResponse = await API.get(
           `search.json?${category}=${searchTerm}`
         );
@@ -39,21 +40,22 @@ const Home = () => {
         }
       }
     };
-
     fetchSearch();
-  }, [searchTerm]);
+  }, [searchTerm]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
+      {/* Display video component only when user is not searching */}
+      {!searchTerm ? <Video /> : null }
       {loading && <Spinner />}
-      <div style={{ display: "flex" }}>
-        <SearchBar category={category} setSearchTerm={setSearchTerm} />
+      <Wrapper style={{ display: "flex" }}>
         <Category category={category} setCategory={setCategory} />
-      </div>
+        <SearchBar category={category} setSearchTerm={setSearchTerm} />
+      </Wrapper>
 
       <BooksGrid>
-        {
-          books.map((book, i) => (
+        {books
+          .map((book, i) => (
             <Book
               key={i}
               author={book.author_name}
@@ -62,9 +64,8 @@ const Home = () => {
               editionCount={book.edition_count}
               posterUrl={book.cover_i}
             />
-          )).slice(0, 6)
-          /* .slice(0, 6) */
-        }
+          ))
+          .slice(0, 6)}
       </BooksGrid>
     </>
   );

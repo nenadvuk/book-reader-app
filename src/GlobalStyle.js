@@ -13,12 +13,16 @@ export const GlobalStyle = createGlobalStyle`
   --main: #e1dcc5;
   --brown: #503321;
   --hover: #E22B35;
+  /* Box shadow */
+  --shadow: 5px 5px 10px #503321;
   /* Fonts */
   --fontSuperBig: 2.5rem;
   --fontBig: 2rem;
   --fontMed: 1.5rem;
   --fontSmall: 1.2rem;
   --fontVerySmall: 0.8rem;
+  /* Padding */
+  --padding: 0 40px;
 
 }
 

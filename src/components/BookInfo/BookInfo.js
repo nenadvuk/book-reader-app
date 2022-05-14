@@ -9,7 +9,7 @@ import API from "../../API";
 import InfoBar from "../InfoBar/InfoBar";
 
 const BookInfo = () => {
-  const { bookId } = useParams();
+  const { bookId } = useParams(); /* Grabbing param from url, using router */
   const [bookDetails, setbookDetails] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -48,11 +48,11 @@ const BookInfo = () => {
             <p className="slideInDown" style={{ animationDelay: "1.7s" }}>
               {bookDetails.description
                 ? bookDetails.description.value
-                  ? bookDetails.description.value
-                  : bookDetails.description
+                  ? bookDetails.description.value.slice(0, 800)
+                  : bookDetails.description.slice(0, 800)
                 : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
             </p>
-            <div className="publish-info">
+            <div className="publish-info" >
               <div className="fadeIn" style={{ animationDelay: "1.8s" }}>
                 <h4>First Published</h4>
                 <p>

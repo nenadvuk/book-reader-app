@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   background: var(--brown);
+  box-shadow: var(--shadow);
+ 
 `;
 
 export const Content = styled.div`
@@ -9,6 +11,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
   max-width: var(--maxWidth);
+  padding:var(--padding);
   margin: 0 auto;
 `;
 
