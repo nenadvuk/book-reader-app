@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Spinner } from "../Spinner/Spinner.styles";
+import { Wrapper, Content, Text, Image } from "./BookInfoStyle";
+import NoImage from "../../images/no-image.jpg"
 
 // API
 import API from "../../API";
@@ -25,28 +27,37 @@ const BookInfo = () => {
   }, [bookId]);
 
   return (
-    <div>
+    <Wrapper>
       {loading && <Spinner />}
       {console.log(bookDetails)}
       {/* Waiting for  */}
       {!loading && (
-        <div>
-          {console.log('ok')}
-          <h4>Description</h4>
-          <p>{bookDetails.description.value}</p>
-          <h4>First Published</h4>
-          <p>{bookDetails.first_publish_date ? bookDetails.first_publish_date : "No data"}</p>
-        </div>
+        <Content>
+          <Image
+          src={
+            bookDetails.covers
+              ? `https://covers.openlibrary.org/b/id/${bookDetails.covers[0]}-L.jpg`
+              : NoImage
+          }
+          clickable={false}
+        />
+          <Text>
+            <h4>Description</h4>
+            <p>
+              {bookDetails.description.value
+                ? bookDetails.description.value
+                : bookDetails.description}
+            </p>
+            <h4>First Published</h4>
+            <p>
+              {bookDetails.first_publish_date
+                ? bookDetails.first_publish_date
+                : "No data"}
+            </p>
+          </Text>
+        </Content>
       )}
-
-      {/* <p>{bookDetails.description.value}</p> */}
-      {/* {bookDetails.map((bookDetail, i) => (
-        <div>
-        
-        <p>{bookDetail.description.value ? bookDetail.description.value : bookDetail.description }</p>
-        </div>
-      ))} */}
-    </div>
+    </Wrapper>
   );
 };
 
