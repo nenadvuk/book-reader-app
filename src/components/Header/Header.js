@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+import { Wrapper, Image, Content, Text } from "./HeaderStyle";
+import Logo from "../../images/logo.png";
 
 const Header = () => {
   return (
-    <div>Header</div>
-  )
-}
+    <Wrapper>
+      <Content>
+        <Link to="/">
+          <Image src={Logo} />
+        </Link>
+        <Text>Book Reader App</Text>
+      </Content>
+    </Wrapper>
+  );
+};
 
-export default Header
+export default Header;

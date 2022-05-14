@@ -8,7 +8,6 @@ const Book = ({
   title,
   editionCount,
   posterUrl,
-  authorKey,
   bookKey
 }) => {
   return (

@@ -1,21 +1,20 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  background-size: cover;
-  background-position: center top;
+  margin: 0 auto;
+  max-width: var(--maxWidth);
   padding: 40px 20px;
   animation: fadeIn 1s;
 `;
 
 export const Content = styled.div`
   display: flex;
-  /* flex-direction:row; */
-  max-width: 1200px;
+  flex-direction: row;
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 20px;
   @media screen and (max-width: 768px) {
-    flex-direction: column-reverse;
+    flex-direction: column;
     max-width: 400px;
     max-height: none;
   }
@@ -26,13 +25,21 @@ export const Text = styled.div`
   padding: 20px;
   color: var(--white);
   overflow: hidden;
+  text-align: center;
+  > p {
+    text-align: justify;
+  }
+  .publish-info {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 export const Image = styled.img`
   border-radius: 20px 0 0 20px;
-
+  min-height: 475px;
   @media screen and (max-width: 768px) {
-    border-radius: 0 0 20px 20px ;
+    border-radius: 20px 20px 0 0;
     width: 100%;
   }
 `;

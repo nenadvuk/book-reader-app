@@ -46,7 +46,6 @@ const Home = () => {
             <Book
               key={i}
               author={book.author_name}
-              authorKey={book.author_key}
               bookKey={book.key}
               title={book.title}
               editionCount={book.edition_count}
