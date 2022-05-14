@@ -31,7 +31,23 @@ export const Text = styled.div`
   }
   .publish-info {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+  }
+  .subjects {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    margin-bottom: 15px;
+  }
+  .subjects_item {
+    margin: 10px 10px 0 0;
+    padding: 0.2rem 0.7rem;
+    border-radius: 30px;
+    @media screen and (max-width: 1024px) {
+      font-size: var(--fontVerySmall);
+    }
   }
 `;
 

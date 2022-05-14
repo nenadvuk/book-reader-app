@@ -4,7 +4,7 @@ import searchIcon from "../../images/search-icon.svg";
 // Styles
 import { Wrapper, Content } from "./SearchBarStyles";
 
-const SearchBar = ({ setSearchTerm }) => {
+const SearchBar = ({ category, setSearchTerm }) => {
 
   const [state, setState] = useState("");
 
@@ -14,8 +14,6 @@ const SearchBar = ({ setSearchTerm }) => {
       if (event.keyCode === 13 || event.code === "NumpadEnter") {
         event.preventDefault();
         setSearchTerm(state);
-        // setTimeout(() => {
-        // }, 300);
       }
     };
     document.addEventListener("keydown", listener);
@@ -31,7 +29,7 @@ const SearchBar = ({ setSearchTerm }) => {
         <img src={searchIcon} alt="search-icon" />
         <input
           type="text"
-          placeholder="Search..."
+          placeholder={category==="author" ? "Search Authors..." : "Search Titles..." }
           onChange={(event) => setState(event.currentTarget.value)}
           value={state}
         />

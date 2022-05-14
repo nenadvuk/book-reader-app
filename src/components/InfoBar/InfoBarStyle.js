@@ -5,10 +5,11 @@ max-width: var(--maxWidth);
   /* position: sticky; */
   /* top: 0; */
   /* z-index: 100; */
-  /* display: flex;
+  border-radius:20px;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: center; */
-  /* width: 100%; */
+  margin-bottom:16px;
   height: 70px;
   background: var(--medGrey);
   color: var(--white);

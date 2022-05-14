@@ -27,6 +27,10 @@ export const GlobalStyle = createGlobalStyle`
   font-family: 'Nunito', sans-serif;  
 }
 
+a {
+  text-decoration:none;
+}
+
 body {  
   margin: 0;
   padding: 0;
@@ -49,4 +53,37 @@ body {
     }
   }
 }
+
+.slideInDown {
+  animation-name: slide;
+  animation-duration: .6s;
+  animation-fill-mode: both;
+  }
+  @keyframes slide {
+  0% {
+  transform: translateY(-200%);
+  opacity:0;
+  }
+  100% {
+  opacity:1;
+  transform: translateY(0);
+  }
+  } 
+
+  .zoomIn {
+  animation: zoomIn;
+  animation-delay:.8s;
+  animation-duration: .8s;
+  animation-fill-mode: both;
+  }
+  @keyframes zoomIn {
+  0% {
+  opacity: 0;
+  transform: scale3d(.3, .3, .3);
+  }
+  50% {
+  opacity: 1;
+  }
+}
+
 `;
