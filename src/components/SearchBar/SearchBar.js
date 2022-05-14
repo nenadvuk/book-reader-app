@@ -2,7 +2,7 @@ import { useState, useEffect} from 'react';
 // Image
 import searchIcon from "../../images/search-icon.svg";
 // Styles
-import { Wrapper, Content } from "./SearchBar.styles";
+import { Wrapper, Content } from "./SearchBarStyles";
 
 const SearchBar = ({ setSearchTerm }) => {
 
@@ -13,10 +13,9 @@ const SearchBar = ({ setSearchTerm }) => {
     const listener = (event) => {
       if (event.keyCode === 13 || event.code === "NumpadEnter") {
         event.preventDefault();
-        setTimeout(() => {
-          setSearchTerm(state);
-        }, 300);
-        // clearTimeout()
+        setSearchTerm(state);
+        // setTimeout(() => {
+        // }, 300);
       }
     };
     document.addEventListener("keydown", listener);

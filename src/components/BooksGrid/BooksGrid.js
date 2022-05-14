@@ -1,8 +1,11 @@
-import React from 'react'
+import { Wrapper, Content } from "./BooksGridStyle";
 
-const BooksGrid = () => {
+const BooksGrid = ({children}) => {
   return (
-    <div>BooksGrid</div>
+    <Wrapper>
+        {/* <h1 className={animate ? "fadeIn" : null}>{header}</h1> */}
+        <Content>{children}</Content>
+      </Wrapper>
   )
 }
 

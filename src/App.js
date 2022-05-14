@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./components/Home";
 import Footer from "./components/Footer/Footer";
-
+import BookInfo from "./components/BookInfo/BookInfo";
+import Author from "./components/Author";
 // Styling
 import { GlobalStyle } from "./GlobalStyle";
 
@@ -13,6 +14,8 @@ const App = () => (
     <Header />
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/works/:bookId" element={<BookInfo />} />
+      <Route path="/authors/:authorId" element={<Author />} />
     </Routes>
     <Footer />
     <GlobalStyle />

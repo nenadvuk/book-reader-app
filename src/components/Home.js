@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+// API
 import API from "../API";
+// Components
 import SearchBar from "./SearchBar/SearchBar";
 import { Spinner } from "./Spinner/Spinner.styles";
+import BooksGrid from "./BooksGrid/BooksGrid";
+import Book from "./Book/Book";
+
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -9,15 +14,15 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    const fetchBooks = async () => {
+    const fetchSearch = async () => {
       try {
         setLoading(true);
         const response = await API.get(`search.json?author=${searchTerm}`);
         console.log(response.data.docs);
         setBooks(response.data.docs);
+        setLoading(false);
       } catch (err) {
         if (err.response) {
-          // Not in the 200 response range
           console.log(err.response.data);
           console.log(err.response.status);
           console.log(err.response.headers);
@@ -25,19 +30,32 @@ const Home = () => {
           console.log(`Error: ${err.message}`);
         }
       }
-      setLoading(false);
+     
     };
-    fetchBooks();
+    fetchSearch();
   }, [searchTerm]);
 
+
   return (
-    <div>
+    <>
       {loading && <Spinner />}
-      {books.map((book, i) => (
-        <p key={i}>{book.title}</p>
-      )).slice(0,5)}
-      <SearchBar setSearchTerm={setSearchTerm}/>
-    </div>
+      <SearchBar setSearchTerm={setSearchTerm} />
+      <BooksGrid>
+        {books
+          .map((book, i) => (
+            <Book
+              key={i}
+              author={book.author_name}
+              authorKey={book.author_key}
+              bookKey={book.key}
+              title={book.title}
+              editionCount={book.edition_count}
+              posterUrl={book.cover_i}
+            />
+          ))
+          /* .slice(0, 6) */}
+      </BooksGrid>
+    </>
   );
 };
 

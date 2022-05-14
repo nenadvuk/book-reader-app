@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   --lightGrey: #eee;
   --medGrey: #353535; 
   --darkGrey: #1c1c1c;
+  --background: #e1dcc5;
   --violet: #1c0833;
   --hover: #E22B35;
   /* Fonts */
@@ -30,6 +31,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: var(--background);
   
 }
 
