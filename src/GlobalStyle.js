@@ -36,6 +36,17 @@ body {
 }
 
 /* Animations */
-
-
-`
+.fadeIn{
+  animation-name: fadeIn;
+  animation-fill-mode: both;
+  animation-duration: 1.5s;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+`;
