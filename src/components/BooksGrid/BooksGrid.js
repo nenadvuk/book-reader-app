@@ -1,11 +1,47 @@
+// Style
 import { Wrapper, Content } from "./BooksGridStyle";
+// Mui
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+// Components
+import { Spinner } from "../Spinner/Spinner.styles";
 
-const BooksGrid = ({children}) => {
+const BooksGrid = ({
+  loading,
+  children,
+  items,
+  setItems,
+  numberOfItems,
+  searchTerm
+}) => {
+  // Instead of pagination
+  let num = items;
+
   return (
     <Wrapper>
-        <Content>{children}</Content>
-      </Wrapper>
-  )
-}
+      {loading && <Spinner />}
+      <Content>{children}</Content>
+      <Stack spacing={2} direction="row">
+        {searchTerm && !loading ? (
+          <Button
+            style={{
+              width: "40%",
+              margin: "0 auto"
+            }}
+            // On click we are rendering another 8 books
+            onClick={() => {
+              num += 8;
+              setItems(num);
+              console.log(num);
+            }}
+            variant="contained"
+          >
+            Load More
+          </Button>
+        ) : null}
+      </Stack>
+    </Wrapper>
+  );
+};
 
-export default BooksGrid
+export default BooksGrid;

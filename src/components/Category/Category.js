@@ -6,12 +6,13 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 
-const Category = ({ category, setCategory }) => {
+const Category = ({ category, setCategory}) => {
   const [open, setOpen] = useState(false);
 
   const handleChange = (event) => {
-    setTimeout(() => {}, 100);
     setCategory(event.target.value);
+    console.log(event.target.value);
+    
   };
 
   const handleClose = () => {

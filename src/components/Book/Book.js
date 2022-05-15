@@ -1,6 +1,8 @@
-import React from "react";
-import NoImage from "../../images/no-image.jpg";
+// Style
 import { Wrapper, Image } from "./BookStyle";
+// Component
+import NoImage from "../../images/no-image.jpg";
+// Router
 import { Link } from "react-router-dom";
 
 const Book = ({
@@ -21,6 +23,7 @@ const Book = ({
               ? `https://covers.openlibrary.org/b/id/${posterUrl}-L.jpg`
               : NoImage
           }
+          alt={`${title}-image cover`}
         />
       </Link>
       <p>Editions: {editionCount}</p>

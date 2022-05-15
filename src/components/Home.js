@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import API from "../API";
 // Components
 import SearchBar from "./SearchBar/SearchBar";
-import { Spinner } from "./Spinner/Spinner.styles";
+// import { Spinner } from "./Spinner/Spinner.styles";
 import BooksGrid from "./BooksGrid/BooksGrid";
 import Book from "./Book/Book";
 import Category from "./Category/Category";
@@ -11,24 +11,33 @@ import Video from "./Video/Video";
 // Styles
 import { Wrapper } from "./HomeStyle";
 
-const Home = () => {
+const Home = ({
+  category,
+  setCategory,
+  searchTerm,
+  setSearchTerm,
+  items,
+  setItems
+}) => {
   const [books, setBooks] = useState([]);
-  const [category, setCategory] = useState("author");
   const [loading, setLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  // const [showVideo, setShowVideo] = useState(true);
+  const [numberOfItems, setnumberOfItems] = useState(0);
 
-  
+  // Fetching books with axios, and getting results depending were seraching book tiltes or authors
   useEffect(() => {
     const fetchSearch = async () => {
       try {
+        // Spiner ON
         setLoading(true);
+
         // Search titles or authors
         const searchResponse = await API.get(
           `search.json?${category}=${searchTerm}`
         );
         console.log(searchResponse.data.docs);
         setBooks(searchResponse.data.docs);
+        setnumberOfItems(searchResponse.data.docs.lenth);
+        // Spinner OFF
         setLoading(false);
       } catch (err) {
         if (err.response) {
@@ -46,14 +55,25 @@ const Home = () => {
   return (
     <>
       {/* Display video component only when user is not searching */}
-      {!searchTerm ? <Video /> : null }
-      {loading && <Spinner />}
+      {!searchTerm ? <Video /> : null}
+
       <Wrapper style={{ display: "flex" }}>
         <Category category={category} setCategory={setCategory} />
-        <SearchBar category={category} setSearchTerm={setSearchTerm} />
+        <SearchBar
+          category={category}
+          setSearchTerm={setSearchTerm}
+          setItems={setItems}
+        />
       </Wrapper>
 
-      <BooksGrid>
+      <BooksGrid
+        loading={loading}
+        searchTerm={searchTerm}
+        numberOfItems={numberOfItems}
+        items={items}
+        setItems={setItems}
+      >
+        {/* Mapping results and pushing values to Book component */}
         {books
           .map((book, i) => (
             <Book
@@ -65,7 +85,8 @@ const Home = () => {
               posterUrl={book.cover_i}
             />
           ))
-          .slice(0, 6)}
+          .slice(0, items)}{" "}
+        {/* Showing only 8 results per load, intead of pagination */}
       </BooksGrid>
     </>
   );

@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
 export const Image = styled.img`
   box-shadow: var(--shadow);
   height: 320px;
+  max-width:210px;
   transition: all 0.3s;
   object-fit: cover;
   border-radius: 10px;

@@ -24,7 +24,7 @@ export const Content = styled.div`
 export const Text = styled.div`
   width: 100%;
   padding: 20px;
-  color: var(--white);
+  color: var(--main);
   overflow: hidden;
   text-align: center;
   > p {
@@ -60,3 +60,9 @@ export const Image = styled.img`
     width: 100%;
   }
 `;
+
+export const Button = styled.div`
+display:flex;
+justify-content:end;
+
+`

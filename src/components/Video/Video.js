@@ -5,10 +5,12 @@ import { Wrapper } from "./VideoStyle";
 const Video = () => {
   return (
     <Wrapper>
-      <video loop autoPlay>
+      <div>
+      <video className="fadeIn" loop autoPlay muted>
         <source src={Item} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      </div>
     </Wrapper>
   );
 };
