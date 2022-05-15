@@ -40,8 +40,18 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: var(--main);
+
+  /* Hiding the scroll bar for Internet Explorer, Edge and Firefox*/ 
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+  overflow-y: scroll; 
   
 }
+/* Hiding the scroll bar for Chrome, Safari, and Opera */
+body::-webkit-scrollbar {
+  display: none; 
+}
+
 
 /* Animations */
 .fadeIn{

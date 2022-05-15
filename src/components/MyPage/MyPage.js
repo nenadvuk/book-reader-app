@@ -7,6 +7,7 @@ const MyPage = () => {
     arr.push({ key, value });
     
   }
+  // This is the only solution I've figured out how to render page when local storage is updated
   window.addEventListener('storage', () => {
     setArray(array)
     setArray(arr);
