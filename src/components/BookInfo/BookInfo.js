@@ -10,7 +10,7 @@ import InfoBar from "../InfoBar/InfoBar";
 // Mui
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
+// import AddIcon from "@mui/icons-material/Add";
 // API
 import API from "../../API";
 
@@ -18,7 +18,7 @@ const BookInfo = () => {
   const { bookId } = useParams(); /* Grabbing param from url, using router */
   const [bookDetails, setbookDetails] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [store, setStore] = useState([]);
+  // const [store, setStore] = useState([]);
   const [details, setDetails] = useState({});
 
   useEffect(() => {
@@ -32,21 +32,17 @@ const BookInfo = () => {
         console.log(err);
       }
     };
-    setDetails({
-      "Book Name": bookDetails.title,
-      "Book Key": bookDetails.key
-      // "Book Author": bookDetails.authors.author.key,
-      // "Book cover": bookDetails.covers[0]
-    });
+    // setDetails({
+    //   "Book Name": bookDetails.title,
+    //   "Book Key": bookDetails.key,
+    // });
     fetchBookDetails();
-  }, [bookId, bookDetails.title, bookDetails.key]);
+  }, [bookId /* bookDetails.title, bookDetails.key */]);
 
-  // console.log(bookDetails);
 
   return (
     <Wrapper>
       {loading && <Spinner />}
-      {/* {console.log(bookDetails)} */}
       <InfoBar className="fadeIn" title={bookDetails.title} />
       {!loading && (
         <Content>
@@ -98,7 +94,7 @@ const BookInfo = () => {
                   <span
                     style={{
                       animationDelay: `2.${i}s`,
-                      animationDuration: ".5s"
+                      animationDuration: ".8s"
                     }}
                     className="zoomIn subjects_item"
                     key={i}
@@ -112,11 +108,10 @@ const BookInfo = () => {
       )}
       <Button
         onClick={
-          () => localStorage.setItem("Book-details", JSON.stringify(details))
-          // {console.log(details)}
+          () => localStorage.setItem(bookDetails.title, JSON.stringify(bookDetails.key))
         }
         className="fadeIn"
-        style={{ animationDelay: "3s" }}
+        style={{ animationDelay: "2.5s" }}
       >
         <Box sx={{ "& > :not(style)": { m: 1 } }}>
           <Fab color="success" aria-label="add">
