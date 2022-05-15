@@ -19,7 +19,7 @@ const BookInfo = () => {
   const [bookDetails, setbookDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   // const [store, setStore] = useState([]);
-  const [details, setDetails] = useState({});
+  // const [details, setDetails] = useState({});
 
   useEffect(() => {
     const fetchBookDetails = async () => {
@@ -38,7 +38,6 @@ const BookInfo = () => {
     // });
     fetchBookDetails();
   }, [bookId /* bookDetails.title, bookDetails.key */]);
-
 
   return (
     <Wrapper>
@@ -107,9 +106,13 @@ const BookInfo = () => {
         </Content>
       )}
       <Button
-        onClick={
-          () => localStorage.setItem(bookDetails.title, JSON.stringify(bookDetails.key))
-        }
+        onClick={() => localStorage.setItem(bookDetails.key, bookDetails.title)}
+        // onClick={function () {
+        //   localStorage.setItem(
+        //     JSON.stringify(bookDetails.key),
+        //     JSON.stringify(bookDetails.title)
+        //   );
+        // }}
         className="fadeIn"
         style={{ animationDelay: "2.5s" }}
       >
@@ -120,7 +123,6 @@ const BookInfo = () => {
           </Fab>
         </Box>
       </Button>
-      
     </Wrapper>
   );
 };

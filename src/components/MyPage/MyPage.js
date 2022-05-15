@@ -1,11 +1,27 @@
-import React from "react";
+import { useState } from "react";
 
 const MyPage = () => {
-  {
-    let retrievedObject = localStorage.getItem("Book-details");
-    console.log("Book-details: ", JSON.parse(retrievedObject));
+  const [array, setArray] = useState([]);
+  let arr = [];
+  for (let [key, value] of Object.entries(localStorage)) {
+    arr.push({ key, value });
+    
   }
-  return <div>MyPage</div>;
+  window.addEventListener('storage', () => {
+    setArray(array)
+    setArray(arr);
+    
+  });
+  
+  return (
+    <div>
+      <ul>
+        {arr.map((item) => (
+          <li key={item.key}>{item.value}</li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default MyPage;

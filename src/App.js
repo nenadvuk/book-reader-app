@@ -6,15 +6,15 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home";
 import Footer from "./components/Footer/Footer";
 import BookInfo from "./components/BookInfo/BookInfo";
-// Global Styling 
+// Global Styling
 import { GlobalStyle } from "./GlobalStyle";
 import MyPage from "./components/MyPage/MyPage";
 
 const App = () => {
-
   const [category, setCategory] = useState("author");
   const [searchTerm, setSearchTerm] = useState("");
   const [items, setItems] = useState(8);
+
   return (
     <Router>
       <Header
