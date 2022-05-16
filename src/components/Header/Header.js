@@ -21,7 +21,7 @@ const Header = ({ setCategory, setSearchTerm, setItems }) => {
       <Content>
         <Link to="/">
           <div className="flex">
-            <Image onClick={handleClick} src={Logo} />{" "}
+            <Image onClick={handleClick} src={Logo} />
             <Text>Book Reader App</Text>
           </div>
         </Link>

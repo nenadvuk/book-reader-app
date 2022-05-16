@@ -86,7 +86,6 @@ body::-webkit-scrollbar {
 
   .zoomIn {
   animation: zoomIn;
-  animation-delay:.8s;
   animation-duration: .8s;
   animation-fill-mode: both;
   }

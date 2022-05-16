@@ -10,7 +10,7 @@ import InfoBar from "../InfoBar/InfoBar";
 // Mui
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
-// import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 // API
 import API from "../../API";
 
@@ -18,31 +18,42 @@ const BookInfo = () => {
   const { bookId } = useParams(); /* Grabbing param from url, using router */
   const [bookDetails, setbookDetails] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [store, setStore] = useState([]);
-  // const [details, setDetails] = useState({});
+  const [bookAdded, setBookAdded] = useState(false);
 
   useEffect(() => {
     const fetchBookDetails = async () => {
       try {
         const response = await API.get(`works/${bookId}`);
         setbookDetails(response.data);
-        console.log(response.data);
+        // console.log(response.data);
         setLoading(false);
       } catch (err) {
         console.log(err);
       }
     };
-    // setDetails({
-    //   "Book Name": bookDetails.title,
-    //   "Book Key": bookDetails.key,
-    // });
+    // Checking if the book is stored on local storage with foor loop
+    const isTheBookOnMyList = () => {
+      for (let i = 0; i < Object.entries(localStorage).length; i++) {
+        if (bookDetails.key === Object.entries(localStorage)[i][0]) {
+          setBookAdded(true);
+        }
+      }
+    };
+    isTheBookOnMyList();
     fetchBookDetails();
-  }, [bookId /* bookDetails.title, bookDetails.key */]);
+  }, [bookId, bookDetails, bookAdded]);
 
   return (
     <Wrapper>
       {loading && <Spinner />}
-      <InfoBar className="fadeIn" title={bookDetails.title} />
+      {console.log(bookAdded)}
+      <InfoBar
+        className="fadeIn"
+        title={bookDetails.title}
+        BookKey={bookDetails.key}
+        bookAdded={bookAdded}
+      />
+
       {!loading && (
         <Content>
           <Image
@@ -106,20 +117,28 @@ const BookInfo = () => {
         </Content>
       )}
       <Button
-        onClick={() => localStorage.setItem(bookDetails.key, bookDetails.title)}
-        // onClick={function () {
-        //   localStorage.setItem(
-        //     JSON.stringify(bookDetails.key),
-        //     JSON.stringify(bookDetails.title)
-        //   );
-        // }}
+        onClick={function () {
+          // Depending if we add to, or remove book from our list, we also adding or removing it from local storage and updating infobar
+          !bookAdded
+            ? localStorage.setItem(bookDetails.key, bookDetails.title)
+            : localStorage.removeItem(bookDetails.key, bookDetails.title);
+          setBookAdded(!bookAdded);
+        }}
         className="fadeIn"
         style={{ animationDelay: "2.5s" }}
       >
         <Box sx={{ "& > :not(style)": { m: 1 } }}>
-          <Fab color="success" aria-label="add">
-            ADD
-            {/* <AddIcon  /> */}
+          <Fab
+            // disabled
+            color={!bookAdded ? "success" : "error"}
+            title={
+              !bookAdded
+                ? "Add Book To Your Collection"
+                : "Remove Book From Your Collection"
+            }
+            aria-label="add"
+          >
+            {!bookAdded ? "ADD" : <DeleteIcon />}
           </Fab>
         </Box>
       </Button>

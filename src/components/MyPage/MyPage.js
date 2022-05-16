@@ -5,15 +5,13 @@ const MyPage = () => {
   let arr = [];
   for (let [key, value] of Object.entries(localStorage)) {
     arr.push({ key, value });
-    
   }
   // This is the only solution I've figured out how to render page when local storage is updated
-  window.addEventListener('storage', () => {
-    setArray(array)
+  window.addEventListener("storage", () => {
+    setArray(array);
     setArray(arr);
-    
   });
-  
+
   return (
     <div>
       <ul>

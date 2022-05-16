@@ -23,23 +23,24 @@ const Home = ({
   const [loading, setLoading] = useState(false);
   const [numberOfItems, setnumberOfItems] = useState(0);
 
-  // Fetching books with axios, and getting results depending were seraching book tiltes or authors
+  // Fetching books with axios, and getting results depending if we're seraching book titles or authors
   useEffect(() => {
     const fetchSearch = async () => {
       try {
         // Spiner ON
         setLoading(true);
-
         // Search titles or authors
         const searchResponse = await API.get(
           `search.json?${category}=${searchTerm}`
         );
         console.log(searchResponse.data.docs);
+        // Updating state
         setBooks(searchResponse.data.docs);
         setnumberOfItems(searchResponse.data.docs.lenth);
         // Spinner OFF
         setLoading(false);
       } catch (err) {
+        // Erors
         if (err.response) {
           console.log(err.response.data);
           console.log(err.response.status);
@@ -58,6 +59,7 @@ const Home = ({
       {!searchTerm ? <Video /> : null}
 
       <Wrapper style={{ display: "flex" }}>
+        {/* Select authors or titles*/}
         <Category category={category} setCategory={setCategory} />
         <SearchBar
           category={category}
@@ -65,7 +67,7 @@ const Home = ({
           setItems={setItems}
         />
       </Wrapper>
-
+      {/* Displaying results in grid */}
       <BooksGrid
         loading={loading}
         searchTerm={searchTerm}

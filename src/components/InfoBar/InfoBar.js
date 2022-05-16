@@ -1,18 +1,19 @@
-import React from "react";
 
-// import { Link } from "react-router-dom";
 // Styles
 import { Wrapper, Content } from "./InfoBarStyle";
 
-const InfoBar = ({ title }) => {
+const InfoBar = ({ title, bookAdded }) => {
+  
   return (
     <Wrapper>
       <Content>
-        {/* <Link to="/">
-          <span>Home</span>
-        </Link>
-        <span>|</span> */}
-        <span>{title}</span>
+        <span className="fadeIn">{title}</span>
+        {/*Depending if we just add the book, or visited page again, message is shown */}
+        {bookAdded && (
+          <span style={{ animationDuration: ".2s" }} className="zoomIn">
+            <i>This Book Is On Your List</i>
+          </span>
+        )}
       </Content>
     </Wrapper>
   );
