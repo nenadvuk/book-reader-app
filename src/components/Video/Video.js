@@ -6,7 +6,7 @@ const Video = () => {
   return (
     <Wrapper>
       <div>
-      <video className="fadeIn" loop autoPlay muted>
+      <video className="fadeIn vid" loop autoPlay muted>
         <source src={Item} type="video/mp4" />
         Your browser does not support the video tag.
       </video>

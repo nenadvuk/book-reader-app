@@ -61,7 +61,7 @@ export const Image = styled.img`
   }
 `;
 
-export const Button = styled.div`
+export const ButtonBox = styled.div`
 display:flex;
 justify-content:end;
 

@@ -16,17 +16,19 @@ const BooksGrid = ({
 }) => {
   // Instead of pagination
   let num = items;
-
+  
   return (
     <Wrapper>
       {loading && <Spinner />}
       <Content>{children}</Content>
       <Stack spacing={2} direction="row">
         {searchTerm && !loading ? (
-          <Button
+          <Button 
             style={{
               width: "40%",
-              margin: "0 auto"
+              borderRadius: 5,
+              margin: "0 auto",
+              backgroundColor: "var(--brown)",
             }}
             // On click we are rendering another 8 books
             onClick={() => {

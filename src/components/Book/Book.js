@@ -5,12 +5,17 @@ import NoImage from "../../images/no-image.jpg";
 // Router
 import { Link } from "react-router-dom";
 
+import Box from "@mui/material/Box";
+import Fab from "@mui/material/Fab";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 const Book = ({
   author,
   title,
   editionCount,
   posterUrl,
-  bookKey
+  bookKey,
+  passedDeleteButton
 }) => {
   return (
     <Wrapper>
@@ -26,7 +31,20 @@ const Book = ({
           alt={`${title}-image cover`}
         />
       </Link>
-      <p>Editions: {editionCount}</p>
+      {editionCount ? <p>Editions: {editionCount}</p> : null}
+      {passedDeleteButton ? (
+        <Box
+          onClick={function () {
+            console.log("ok");
+            localStorage.removeItem(bookKey);
+          }}
+          sx={{ "& > :not(style)": { m: 1 } }}
+        >
+          <Fab color="error">
+            <DeleteIcon />
+          </Fab>
+        </Box>
+      ) : null}
     </Wrapper>
   );
 };

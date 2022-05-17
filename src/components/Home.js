@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-// API
+// Axios
 import axios from "axios";
-// import API from "../API";
 // Components
 import SearchBar from "./SearchBar/SearchBar";
 // import { Spinner } from "./Spinner/Spinner.styles";
@@ -86,6 +85,7 @@ const Home = ({
               title={book.title}
               editionCount={book.edition_count}
               posterUrl={book.cover_i}
+              passedDeleteButton={false}
             />
           ))
           .slice(0, items)}{" "}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // Style
-import { Wrapper, Content, Text, Image, Button } from "./BookInfoStyle";
+import { Wrapper, Content, Text, Image, ButtonBox } from "./BookInfoStyle";
 // Router
 import { useParams } from "react-router-dom";
 // Components
@@ -11,13 +11,16 @@ import InfoBar from "../InfoBar/InfoBar";
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import DeleteIcon from "@mui/icons-material/Delete";
-// API
-// import API from "../../API";
+import { Button } from "@mui/material";
+import EventNoteIcon from '@mui/icons-material/EventNote';
+// Axios
 import axios from "axios";
 
 const BookInfo = () => {
   const { bookId } = useParams(); /* Grabbing param from url, using router */
-  const [bookDetails, setbookDetails] = useState([]);
+  const [bookDetails, setbookDetails] = useState(
+    []
+  ); /* Storing results here  */
   const [loading, setLoading] = useState(true);
   const [bookAdded, setBookAdded] = useState(false);
 
@@ -32,7 +35,7 @@ const BookInfo = () => {
         console.log(err);
       }
     };
-    // Checking if the book is stored on local storage with foor loop, if true we are updating "bookAdded" state and sendin it also to Infobar Component
+    // Checking if the book is stored on local storage with foor loop, if true we are updating "bookAdded" state and sending it also to Infobar Component
     const isTheBookOnMyList = () => {
       for (let i = 0; i < Object.entries(localStorage).length; i++) {
         if (bookDetails.key === Object.entries(localStorage)[i][0]) {
@@ -116,18 +119,43 @@ const BookInfo = () => {
           </Text>
         </Content>
       )}
+      <ButtonBox>
       <Button
-        onClick={function () {
-          // Depending if we add to, or remove book from our list, we also adding or removing it from local storage and updating infobar
-          !bookAdded
-            ? localStorage.setItem(bookDetails.key, bookDetails.title)
-            : localStorage.removeItem(bookDetails.key, bookDetails.title);
-          setBookAdded(!bookAdded);
-        }}
-        className="fadeIn"
-        style={{ animationDelay: "3s" }}
-      >
-        <Box sx={{ "& > :not(style)": { m: 1 } }}>
+            style={{
+              marginTop:"17px",
+              height:40,
+              borderRadius: 5,
+              backgroundColor: "var(--medGrey)",
+            }}
+            variant="contained"
+            // color="success"
+            endIcon={<EventNoteIcon/>}
+          >
+            View Note
+          </Button>
+        <Box
+          onClick={function () {
+            const localStorageItems = {
+              title: bookDetails.title,
+              haveRead: false,
+              authorKey: bookDetails.authors
+                ? bookDetails.authors[0].author.key
+                : null,
+              covers: bookDetails.covers ? bookDetails.covers[0] : null
+            };
+            // Depending if we add to, or remove book from our list, we also adding or removing it from local storage and updating infobar
+            !bookAdded
+              ? localStorage.setItem(
+                  bookDetails.key,
+                  JSON.stringify(localStorageItems)
+                )
+              : localStorage.removeItem(bookDetails.key, localStorageItems);
+            setBookAdded(!bookAdded);
+          }}
+          className="fadeIn"
+          style={{ animationDelay: "3s" }}
+          sx={{ "& > :not(style)": { m: 1 } }}
+        >
           <Fab
             // disabled
             color={!bookAdded ? "success" : "error"}
@@ -141,7 +169,7 @@ const BookInfo = () => {
             {!bookAdded ? "ADD" : <DeleteIcon />}
           </Fab>
         </Box>
-      </Button>
+      </ButtonBox>
     </Wrapper>
   );
 };
