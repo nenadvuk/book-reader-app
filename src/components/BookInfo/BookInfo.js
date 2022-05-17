@@ -13,8 +13,8 @@ import Fab from "@mui/material/Fab";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
 import EventNoteIcon from "@mui/icons-material/EventNote";
-// Axios
-import axios from "axios";
+// API
+import API from "../../API";
 
 const BookInfo = () => {
   const { bookId } = useParams(); /* Grabbing param from url, using router */
@@ -30,7 +30,7 @@ const BookInfo = () => {
   useEffect(() => {
     const fetchBookDetails = async () => {
       try {
-        const response = await axios.get(`${bookId}`);
+        const response = await API.get(`${bookId}`);
         setbookDetails(response.data);
         setLoading(false);
       } catch (err) {

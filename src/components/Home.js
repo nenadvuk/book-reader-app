@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-// Axios
-import axios from "axios";
+// API
+import API from "../API"
 // Components
 import SearchBar from "./SearchBar/SearchBar";
 // import { Spinner } from "./Spinner/Spinner.styles";
@@ -10,6 +10,7 @@ import Category from "./Category/Category";
 import Video from "./Video/Video";
 // Styles
 import { Wrapper } from "./HomeStyle";
+
 
 const Home = ({
   category,
@@ -30,7 +31,7 @@ const Home = ({
         // Spiner ON
         setLoading(true);
         // Search titles or authors
-        const searchResponse = await axios.get(
+        const searchResponse = await API.get(
           `search.json?${category}=${searchTerm}`
         );
         // console.log(searchResponse.data.docs);
