@@ -26,7 +26,7 @@ const Header = ({ setCategory, setSearchTerm, setItems }) => {
           </div>
         </Link>
         <Link to="/my-page">
-          <Button variant="contained" endIcon={<SendIcon />}>
+          <Button variant="contained" color="success" endIcon={<SendIcon />}>
             My Page
           </Button>
         </Link>

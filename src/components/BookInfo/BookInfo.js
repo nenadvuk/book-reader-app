@@ -12,7 +12,8 @@ import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import DeleteIcon from "@mui/icons-material/Delete";
 // API
-import API from "../../API";
+// import API from "../../API";
+import axios from "axios";
 
 const BookInfo = () => {
   const { bookId } = useParams(); /* Grabbing param from url, using router */
@@ -20,18 +21,18 @@ const BookInfo = () => {
   const [loading, setLoading] = useState(true);
   const [bookAdded, setBookAdded] = useState(false);
 
+  // Fetching book which user have clicked with axios, and getting their details
   useEffect(() => {
     const fetchBookDetails = async () => {
       try {
-        const response = await API.get(`works/${bookId}`);
+        const response = await axios.get(`${bookId}`);
         setbookDetails(response.data);
-        // console.log(response.data);
         setLoading(false);
       } catch (err) {
         console.log(err);
       }
     };
-    // Checking if the book is stored on local storage with foor loop
+    // Checking if the book is stored on local storage with foor loop, if true we are updating "bookAdded" state and sendin it also to Infobar Component
     const isTheBookOnMyList = () => {
       for (let i = 0; i < Object.entries(localStorage).length; i++) {
         if (bookDetails.key === Object.entries(localStorage)[i][0]) {
@@ -39,21 +40,20 @@ const BookInfo = () => {
         }
       }
     };
-    isTheBookOnMyList();
     fetchBookDetails();
-  }, [bookId, bookDetails, bookAdded]);
+    isTheBookOnMyList();
+  }, [bookId, bookDetails.key]);
 
   return (
     <Wrapper>
       {loading && <Spinner />}
-      {console.log(bookAdded)}
       <InfoBar
         className="fadeIn"
         title={bookDetails.title}
         BookKey={bookDetails.key}
         bookAdded={bookAdded}
       />
-
+      {console.log(bookDetails)}
       {!loading && (
         <Content>
           <Image
@@ -125,7 +125,7 @@ const BookInfo = () => {
           setBookAdded(!bookAdded);
         }}
         className="fadeIn"
-        style={{ animationDelay: "2.5s" }}
+        style={{ animationDelay: "3s" }}
       >
         <Box sx={{ "& > :not(style)": { m: 1 } }}>
           <Fab

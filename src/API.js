@@ -1,5 +1,12 @@
-import axios from "axios";
+// import axios from "axios";
 
-export default axios.create({
-  baseURL: "https://openlibrary.org/"
-});
+// // const cors =require("cors") 
+// // axios.request(
+// //   cors({
+// //     origin:"http://localhost:3000"
+// //   })
+// // )
+
+// export default axios.create({
+//   baseURL: "https://openlibrary.org/"
+// });
