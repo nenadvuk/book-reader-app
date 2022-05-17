@@ -11,7 +11,6 @@ const Category = ({ category, setCategory }) => {
 
   const handleChange = (event) => {
     setCategory(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleClose = () => {
@@ -25,7 +24,7 @@ const Category = ({ category, setCategory }) => {
   return (
     <div>
       <Button sx={{ display: "block" }} onClick={handleOpen}></Button>
-      <FormControl sx={{ m: 0, minWidth: 100 }} focused label="Category">
+      <FormControl sx={{ m: 0, minWidth: 95 }} focused label="Category">
         <InputLabel style={{ color: "var(--brown)" }}>Categories</InputLabel>
         <Select
           style={{ color: "var(--brown)" }}

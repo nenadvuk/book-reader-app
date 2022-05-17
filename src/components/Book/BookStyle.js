@@ -8,6 +8,12 @@ export const Wrapper = styled.div`
     font-style: italic;
   }
 `;
+export const ButtonContainer = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+
+`;
 
 export const Image = styled.img`
   box-shadow: var(--shadow);

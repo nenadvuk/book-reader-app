@@ -12,6 +12,10 @@ export const Content = styled.div`
   max-width: var(--maxWidth);
   padding: var(--padding);
   margin: 0 auto;
+  @media screen and (max-width: 768px) {
+    justify-content: space-around;
+    width:100%;
+  }
   .flex {
     align-items: center;
     display: flex;
@@ -29,4 +33,8 @@ export const Text = styled.h2`
     transition: all .3s;
     color:var(--hover)
   }
+  @media screen and (max-width: 768px) {
+    font-size:var(--fontVerySmall);
+  }
+
 `;

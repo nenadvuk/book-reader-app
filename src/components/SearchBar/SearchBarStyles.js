@@ -45,6 +45,6 @@ export const Content = styled.div`
   @media screen and (max-width: 768px) {
     height: 45px;
     margin-bottom: 10px;
-    width: 350px;
+    width: auto;
   }
 `;

@@ -33,7 +33,7 @@ const Home = ({
         const searchResponse = await axios.get(
           `search.json?${category}=${searchTerm}`
         );
-        console.log(searchResponse.data.docs);
+        // console.log(searchResponse.data.docs);
         // Updating state
         setBooks(searchResponse.data.docs);
         setnumberOfItems(searchResponse.data.docs.lenth);
@@ -86,6 +86,7 @@ const Home = ({
               editionCount={book.edition_count}
               posterUrl={book.cover_i}
               passedDeleteButton={false}
+              passedReadButton={false}
             />
           ))
           .slice(0, items)}{" "}

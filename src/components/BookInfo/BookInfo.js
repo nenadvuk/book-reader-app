@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
-import EventNoteIcon from '@mui/icons-material/EventNote';
+import EventNoteIcon from "@mui/icons-material/EventNote";
 // Axios
 import axios from "axios";
 
@@ -23,6 +23,8 @@ const BookInfo = () => {
   ); /* Storing results here  */
   const [loading, setLoading] = useState(true);
   const [bookAdded, setBookAdded] = useState(false);
+  const [noteAdd, setNoteAdd] = useState(false);
+
 
   // Fetching book which user have clicked with axios, and getting their details
   useEffect(() => {
@@ -47,16 +49,19 @@ const BookInfo = () => {
     isTheBookOnMyList();
   }, [bookId, bookDetails.key]);
 
+  
+
   return (
     <Wrapper>
       {loading && <Spinner />}
       <InfoBar
         className="fadeIn"
         title={bookDetails.title}
-        BookKey={bookDetails.key}
+        bookKey={bookDetails.key}
         bookAdded={bookAdded}
+        noteAdd={noteAdd}
       />
-      {console.log(bookDetails.key)}
+      {/* {console.log(bookDetails.key)} */}
       {!loading && (
         <Content>
           <Image
@@ -120,19 +125,39 @@ const BookInfo = () => {
         </Content>
       )}
       <ButtonBox>
-      <Button
+        {bookAdded ? (
+          <Button
             style={{
-              marginTop:"17px",
-              height:40,
+              marginTop: "17px",
+              height: 40,
               borderRadius: 5,
-              backgroundColor: "var(--medGrey)",
+              backgroundColor: "var(--medGrey)"
             }}
             variant="contained"
+            className="fadeIn"
             // color="success"
-            endIcon={<EventNoteIcon/>}
+            endIcon={<EventNoteIcon />}
+            onClick={function () {
+              const note = prompt("Please Add Your Note");
+              setNoteAdd(true)
+              const localStorageItems = {
+                title: bookDetails.title,
+                haveRead: false,
+                authorKey: bookDetails.authors
+                  ? bookDetails.authors[0].author.key
+                  : null,
+                covers: bookDetails.covers ? bookDetails.covers[0] : null,
+                note: note
+              };
+              localStorage.setItem(
+                bookDetails.key,
+                JSON.stringify(localStorageItems)
+              );
+            }}
           >
-            View Note
+            Add Note
           </Button>
+        ) : null}
         <Box
           onClick={function () {
             const localStorageItems = {
@@ -141,7 +166,8 @@ const BookInfo = () => {
               authorKey: bookDetails.authors
                 ? bookDetails.authors[0].author.key
                 : null,
-              covers: bookDetails.covers ? bookDetails.covers[0] : null
+              covers: bookDetails.covers ? bookDetails.covers[0] : null,
+              note: ""
             };
             // Depending if we add to, or remove book from our list, we also adding or removing it from local storage and updating infobar
             !bookAdded
@@ -151,6 +177,8 @@ const BookInfo = () => {
                 )
               : localStorage.removeItem(bookDetails.key);
             setBookAdded(!bookAdded);
+            setNoteAdd(false)
+            
           }}
           className="fadeIn"
           style={{ animationDelay: "3s" }}

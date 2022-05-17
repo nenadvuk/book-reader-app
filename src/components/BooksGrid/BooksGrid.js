@@ -34,7 +34,6 @@ const BooksGrid = ({
             onClick={() => {
               num += 8;
               setItems(num);
-              console.log(num);
             }}
             variant="contained"
           >
