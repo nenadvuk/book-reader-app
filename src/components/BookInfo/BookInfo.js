@@ -30,7 +30,7 @@ const BookInfo = () => {
   useEffect(() => {
     const fetchBookDetails = async () => {
       try {
-        const response = await API.get(`${bookId}`);
+        const response = await API.get(`works/${bookId}`);
         setbookDetails(response.data);
         setLoading(false);
       } catch (err) {
