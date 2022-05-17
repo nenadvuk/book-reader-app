@@ -56,7 +56,7 @@ const BookInfo = () => {
         BookKey={bookDetails.key}
         bookAdded={bookAdded}
       />
-      {console.log(bookDetails)}
+      {console.log(bookDetails.key)}
       {!loading && (
         <Content>
           <Image
@@ -149,7 +149,7 @@ const BookInfo = () => {
                   bookDetails.key,
                   JSON.stringify(localStorageItems)
                 )
-              : localStorage.removeItem(bookDetails.key, localStorageItems);
+              : localStorage.removeItem(bookDetails.key);
             setBookAdded(!bookAdded);
           }}
           className="fadeIn"

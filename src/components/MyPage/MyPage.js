@@ -21,12 +21,13 @@ const MyPage = () => {
     arr.push({ key, value });
   }
 
+  console.log(arr);
   // This is the only solution I've figured out how to render page when local storage is updated
   window.addEventListener("storage", () => {
     setArray(arr);
   });
   
-  
+  // let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
   
   
   
