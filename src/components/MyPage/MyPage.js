@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
 // Components
 import BooksGrid from "../BooksGrid/BooksGrid";
-import { Spinner } from "../Spinner/Spinner.styles";
-import NoImage from "../../images/no-image.jpg";
+// import { Spinner } from "../Spinner/Spinner.styles";
+// import NoImage from "../../images/no-image.jpg";
 import Book from "../Book/Book";
 
 
@@ -13,8 +13,8 @@ import Book from "../Book/Book";
 
 const MyPage = () => {
   const [array, setArray] = useState([]);
-  const [bookDetails, setbookDetails] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [bookDetails, setbookDetails] = useState([]);
+  // const [loading, setLoading] = useState(true);
 
   let arr = [];
   for (let [key, value] of Object.entries(localStorage)) {
@@ -22,6 +22,7 @@ const MyPage = () => {
   }
 
   console.log(arr);
+  console.log(array);
   // This is the only solution I've figured out how to render page when local storage is updated
   window.addEventListener("storage", () => {
     setArray(arr);
