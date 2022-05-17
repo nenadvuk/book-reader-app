@@ -18,10 +18,12 @@ const Book = ({
   bookKey,
   passedDeleteButton
 }) => {
+  // State which is used for removing an item from my list, along with deleting it from local storage
   const [isDeleted, setIsDeleted] = useState(false);
 
   return (
     <Wrapper>
+      {/* If isDeleted === false, book details will be shown, otherwise, when we click delete state changes to true and book will not be visible anymore */}
       {!isDeleted && (
         <div>
           <h3>{author[0]}</h3>
